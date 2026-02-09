@@ -1,0 +1,17 @@
+p {
+   color:rgb(155, 59, 59);
+ }
+.highlight {
+    background-color: burlywood;
+ }
+#unique-section {
+  border: 2px solid rgb(110, 59, 25);
+   padding: 10px;
+  }
+a[href] {
+  text-decoration: none;
+  color: rgb(189, 9, 9);
+  }
+* {
+   font-family: 'Times New Roman', Times, serif;
+ }

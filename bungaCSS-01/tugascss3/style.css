@@ -1,0 +1,23 @@
+body {
+    font-family:'Gill Sans', 'Gill Sans MT',  'Trebuchet MS', sans-serif;
+    background-color: pink;
+    margin:auto;
+    padding: auto;
+}
+h1 {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:black;
+    text-align: center;
+    margin-top: 20px;
+}
+h2 {
+    font-family: 'Times New Roman', Times, serif;
+    color: #666;
+    text-align: center;
+    margin-top: 10px;
+}
+p {
+    color: black;
+    line-height: 1.6;
+    padding: 40px;
+}
