@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Diary</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Comic Sans MS', sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#ffb6d9,#ffd6ec,#ffc2e2);
+    overflow-x:hidden;
+}
+
+/* DEKORASI */
+.stars{
+    position:fixed;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+
+.stars span{
+    position:absolute;
+    font-size:20px;
+    animation:float 5s infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0px);}
+    50%{transform:translateY(-15px);}
+    100%{transform:translateY(0px);}
+}
+
+/* LOGIN */
+
+#loginPage{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    padding:20px;
+}
+
+.login-box{
+    background:white;
+    width:380px;
+    padding:35px;
+    border-radius:30px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(255,105,180,0.3);
+    border:5px solid #ffd1e8;
+}
+
+.login-box h1{
+    color:#ff4f9a;
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.login-box p{
+    color:#777;
+    margin-bottom:25px;
+}
+
+.login-box input{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:15px;
+    background:#ffeaf4;
+    margin-bottom:20px;
+    font-size:16px;
+    outline:none;
+}
+
+button{
+    background:#ff4f9a;
+    color:white;
+    border:none;
+    padding:14px 25px;
+    border-radius:15px;
+    cursor:pointer;
+    font-size:16px;
+    transition:0.3s;
+    box-shadow:0 5px 10px rgba(255,105,180,0.3);
+}
+
+button:hover{
+    transform:scale(1.05);
+    background:#ff2f85;
+}
+
+/* DIARY */
+
+#diaryPage{
+    display:none;
+    padding:30px;
+}
+
+.container{
+    max-width:850px;
+    margin:auto;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.header h1{
+    color:white;
+    font-size:45px;
+    text-shadow:2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.header p{
+    color:white;
+    font-size:20px;
+    margin-top:10px;
+}
+
+/* FORM */
+
+.form-box{
+    background:white;
+    padding:25px;
+    border-radius:25px;
+    margin-bottom:30px;
+    box-shadow:0 10px 20px rgba(255,105,180,0.2);
+    border:4px dashed #ffb6d9;
+}
+
+.form-box input,
+.form-box textarea{
+    width:100%;
+    padding:15px;
+    margin-bottom:15px;
+    border:none;
+    border-radius:15px;
+    background:#ffeaf4;
+    font-size:16px;
+    outline:none;
+}
+
+.form-box textarea{
+    height:130px;
+    resize:none;
+}
+
+/* CATATAN */
+
+.note-card{
+    background:white;
+    padding:25px;
+    border-radius:25px;
+    margin-bottom:20px;
+    box-shadow:0 8px 15px rgba(255,105,180,0.2);
+    border-left:10px solid #ff7eb6;
+    position:relative;
+}
+
+.note-card h3{
+    color:#ff4f9a;
+    margin-bottom:10px;
+    font-size:24px;
+}
+
+.note-card p{
+    color:#555;
+    line-height:1.6;
+    margin-bottom:15px;
+}
+
+.note-card .emoji{
+    position:absolute;
+    top:15px;
+    right:20px;
+    font-size:28px;
+}
+
+.delete-btn{
+    background:#ff7eb6;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:600px){
+
+    .header h1{
+        font-size:32px;
+    }
+
+    .login-box{
+        width:100%;
+    }
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- DEKORASI -->
+<div class="stars">
+    <span style="top:10%;left:10%;">💖</span>
+    <span style="top:20%;left:80%;">🌸</span>
+    <span style="top:70%;left:15%;">✨</span>
+    <span style="top:60%;left:90%;">🎀</span>
+    <span style="top:40%;left:50%;">💗</span>
+</div>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage">
+
+    <div class="login-box">
+
+        <h1>🌸My Diary🌸</h1>
+
+        <p>Selamat datang di catatan harian kamu 💕</p>
+
+        <input type="text" id="username" placeholder="Masukkan nama kamu">
+
+        <button onclick="login()">
+            Masuk Diary 💖
+        </button>
+
+    </div>
+
+</div>
+
+<!-- DIARY PAGE -->
+<div id="diaryPage">
+
+    <div class="container">
+
+        <div class="header">
+            <h1>📖 Catatan Harianku</h1>
+            <p id="welcome"></p>
+        </div>
+
+        <div class="form-box">
+
+            <input type="text" id="title"
+            placeholder="Judul catatan kamu 🌸">
+
+            <textarea id="note"
+            placeholder="Tulis cerita lucu dan seru hari ini 💕"></textarea>
+
+            <button onclick="addNote()">
+                Simpan Catatan 🎀
+            </button>
+
+        </div>
+
+        <div id="notesContainer"></div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* LOGIN */
+
+function login(){
+
+    let username =
+    document.getElementById("username").value;
+
+    if(username == ""){
+        alert("Nama tidak boleh kosong yaa 💕");
+    }
+    else{
+
+        localStorage.setItem("username", username);
+
+        document.getElementById("loginPage").style.display = "none";
+
+        document.getElementById("diaryPage").style.display = "block";
+
+        document.getElementById("welcome").innerHTML =
+        "Halo <b>" + username + "</b> ✨ Semoga harimu menyenangkan!";
+
+    }
+
+}
+
+/* DATA */
+
+let notes =
+JSON.parse(localStorage.getItem("notes")) || [];
+
+/* TAMBAH CATATAN */
+
+function addNote(){
+
+    let title =
+    document.getElementById("title").value;
+
+    let note =
+    document.getElementById("note").value;
+
+    if(title == "" || note == ""){
+
+        alert("Isi dulu semuanya ya 🌸");
+        return;
+
+    }
+
+    let newNote = {
+
+        title:title,
+        note:note
+
+    };
+
+    notes.push(newNote);
+
+    localStorage.setItem("notes",
+    JSON.stringify(notes));
+
+    document.getElementById("title").value = "";
+    document.getElementById("note").value = "";
+
+    displayNotes();
+
+}
+
+/* TAMPILKAN */
+
+function displayNotes(){
+
+    let container =
+    document.getElementById("notesContainer");
+
+    container.innerHTML = "";
+
+    notes.forEach((item,index)=>{
+
+        container.innerHTML += `
+
+        <div class="note-card">
+
+            <div class="emoji">💖</div>
+
+            <h3>${item.title}</h3>
+
+            <p>${item.note}</p>
+
+            <button class="delete-btn"
+            onclick="deleteNote(${index})">
+
+            Hapus 🗑️
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+/* HAPUS */
+
+function deleteNote(index){
+
+    notes.splice(index,1);
+
+    localStorage.setItem("notes",
+    JSON.stringify(notes));
+
+    displayNotes();
+
+}
+
+/* AUTO LOGIN */
+
+window.onload = function(){
+
+    let username =
+    localStorage.getItem("username");
+
+    if(username){
+
+        document.getElementById("loginPage").style.display = "none";
+
+        document.getElementById("diaryPage").style.display = "block";
+
+        document.getElementById("welcome").innerHTML =
+        "Halo <b>" + username + "</b> ✨ Semoga harimu menyenangkan!";
+
+    }
+
+    displayNotes();
+
+}
+
+</script>
+
+</body>
+</html>
