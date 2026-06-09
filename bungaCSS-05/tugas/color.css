@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.warna-nama {
+    color: blue;
+    font-size: 20px;
+}
+
+.warna-rgb {
+    color: rgb(255, 0, 0);
+    font-size: 20px;
+}
+
+.warna-rgba {
+    color: rgba(0, 128, 0, 0.7);
+    font-size: 20px;
+}
+
+.warna-hsl {
+    color: hsl(270, 100%, 50%);
+    font-size: 20px;
+}
+
+.warna-hsla {
+    color: hsla(30, 100%, 50%, 0.7);
+    font-size: 20px;
+}
